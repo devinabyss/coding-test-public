@@ -1,13 +1,12 @@
 package leetcode.easy;
 
-import lombok.ToString;
+import leetcode.ListNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 
 /**
- *
  * LeetCode - 83. Remove Duplicates from Sorted List
  */
 @Slf4j
@@ -60,23 +59,5 @@ public class RemoveDuplicatesFromSortedListTest {
         return tail;
     }
 
-
-    @ToString
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
 }
