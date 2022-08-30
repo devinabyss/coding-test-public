@@ -27,7 +27,6 @@ public class TargetNumberTest {
 
     public int solution(int[] numbers, int target) {
 
-
         int answer = recursive(0, numbers, 0, target);
 
         return answer;
