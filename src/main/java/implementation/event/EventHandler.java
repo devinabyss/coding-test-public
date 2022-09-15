@@ -23,14 +23,11 @@ public class EventHandler {
     // why copy on write? = multithreaded env
     //private static final List<EventListener> listeners = new CopyOnWriteArrayList<>();
     private static final Map<String, EventListener> listeners = new Hashtable<>();
-
     private static final ExecutorService publishExecutor = Executors.newFixedThreadPool(MAX_THREAD_POOL);
 
     private EventHandler() {
     }
-
     private static EventHandler self = null;
-
     public static EventHandler getInstance() {
         self = Optional.ofNullable(self).orElseGet(() -> {
             try {
@@ -45,14 +42,10 @@ public class EventHandler {
         });
         return self;
     }
-
-
     //
     private EventListener getListener(String key) {
         return listeners.get(key);
     }
-
-
     public void addListener(EventListener eventListener) {
 //        try {
 //            boolean locked = lock.tryLock(100, TimeUnit.MILLISECONDS);
@@ -67,7 +60,6 @@ public class EventHandler {
 //            lock.unlock();
 //        }
     }
-
     public void publishEvent(String eventType, String message) {
         publishExecutor.submit(() -> {
             EventListener listener = getListener(eventType);
@@ -84,7 +76,5 @@ public class EventHandler {
         listeners.forEach((key, value) -> publishExecutor.submit(() -> {
             value.onEvent(message);
         }));
-
     }
-
 }
